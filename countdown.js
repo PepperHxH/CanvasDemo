@@ -4,7 +4,10 @@ var RADIUS = 8;
 var MARGIN_TOP = 50;
 var MARGIN_LEFT = 30;
 
-const endTime = new Date(2019,11,12,23,0,0);
+//获取当前时间
+const endTime = new Date();
+//设置成一小时后
+endTime.setTime(endTime.getTime() + 3600 * 1000);
 var curShowTimeSeconds = 0;
 
 var balls = [];
@@ -43,11 +46,20 @@ window.onload = function() {
 }
 
 function getCurrentShowTimeSeconds() {
+	/*
 	var curTime = new Date();
 	var ret = endTime.getTime() - curTime.getTime();
 	ret = Math.round(ret/1000);
 
 	return ret >= 0 ? ret : 0;
+*/
+
+	//改写成时钟效果
+	var curTime = new Date();
+	var ret = curTime.getHours() * 3600 + curTime.getMinutes() * 60 + curTime.getSeconds();
+
+	return ret;
+
 }
 
 function update() {
@@ -109,7 +121,7 @@ function updateBalls() {
 		}
 	}
 
-	while(balls.length > Math.min(300, cnt)) {
+	while(balls.length > Math.min(500, cnt)) {
 		balls.pop();
 	}
 
